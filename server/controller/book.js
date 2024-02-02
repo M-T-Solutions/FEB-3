@@ -27,7 +27,7 @@ let BooksPerPage = 10
         .sort({Name : 1})
         .exec()
         .then((Booklist) => {
-            res.render('database/Books', { 
+            res.render('database/books', { 
                 title: 'Book List', 
                 Booklist: Booklist, 
                 P: page, 
