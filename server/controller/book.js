@@ -124,43 +124,25 @@ module.exports.postAdd = (req, res, next) => {
     };
 
     // Post Update
-    module.exports.postUpdate = (req, res, next) => {
-
-        if (!db) {
-            res.status(500).json({ error: 'Database connection not established yet' });
-            return;
-        }
+    module.exports.postUpdate = async (req,res,next)=>{ 
+        try{
+            const bkid = req.params.id;
         
-        let id = (req.params.id);
-    
-        let updates = {
-            "_id":id,
-            "Name":req.body.name,
-            "Author":req.body.author,
-            "Published":req.body.published,
-            "Description":req.body.description,
-            "Price":req.body.price
-        };
-    
-        if (!ObjectId.isValid(id)) {
-            res.status(400).json({ error: 'Invalid ObjectId format' });
-            return;}
-    
-            console.log('Update called for');
-    
-        //db.collection('Books')
-        Books.updateOne({_id: new ObjectId(id)}, updates, (err) => {
-                if (err)
-                {
-                    console.log(err);
-                    res.send(err);
-                    console.log('Failed to patch');
-                }
-                else
-                {
-                    res.redirect('/books');
-                }
-    });
+            let updates = {
+                "_id":bkid,
+                "Name":req.body.name,
+                "Author":req.body.author,
+                "Published":req.body.published,
+                "Description":req.body.description,
+                "Price":req.body.price
+            };
+            Books.findByIdAndUpdate(bkid,updates).then(()=>{
+                res.redirect('/books')
+            });
+        }
+        catch(err){  // If Not The Raise An Error
+            console.error(err);
+        }
     };
 
         // Perform Delete
