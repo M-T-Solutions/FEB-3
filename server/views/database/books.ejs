@@ -1,0 +1,60 @@
+<%- include ('../partials/header.ejs') %>
+<%- include ('../partials/main_nav.ejs') %>
+
+<!--Main Content-->  
+<main>
+  <div class="row">
+  <div class="col-md-offset-3 col-md-12">
+    <h1><%= title %></h1>
+    <br>
+    <% if(typeof displayName=='string' && displayName) { %>
+    <a href="/books/add" class="btn btn-primary" role="button">
+      <i class="fas fa-plus-circle"></i> Add a Book</a>
+    <br>
+    <br>
+      <% } %>
+
+    <table class = "table table-bordered table-striped table-hover">
+    <tr>
+      <th class = "text-center col-2" >Name</th>
+      <th class = "text-center col-2">Author</th>
+      <th class = "text-center col-1">Published</th>
+      <th class = "text-center col-4">Description</th>
+      <th class = "text-center col-1">Price</th>
+    <% if(typeof displayName=='string' && displayName) { %>
+      <th class = "text-center col-1">Edit</th>
+      <th class = "text-center col-1">Delete</th>
+      <% } %>
+    </tr>
+
+    <!--Repeat the template-->
+    <% for(let count=0; count<Booklist.length; count++) { %>
+      <tr>
+      <td class = "text-center col-2"><%= count + (10 * P) + 1 %>. <%= Booklist[count].Name %></td>
+      <td class = "text-center col-2"><%= Booklist[count].Author %></td>
+      <td class = "text-center col-1"><%= Booklist[count].Published %></td>
+      <td class = "text-left col-4"><%= Booklist[count].Description %></td>
+      <td class = "text-center col-1"><%= Booklist[count].Price %></td>
+    <% if(typeof displayName=='string' && displayName) { %>
+      <td class = "text-center col-1">
+        <a href="/books/update/<%= Booklist[count]._id %>"
+        class = "btn btn-primary"
+      <i class = "fas fa-pencil-alt"></i> Update </a></td>
+      <td class = "text-center col-1">
+        <a href="/books/delete/<%= Booklist[count]._id %>"
+        class = "btn btn-danger"
+      <i class = "fas fa-trash-alt"></i> Delete </a></td>
+      <% } %>
+      </tr>
+    <% } %>
+
+  
+</div>
+</main>
+
+  <!--Content-->
+
+<%- include ('../partials/bottom_nav.ejs') %>
+<%- include ('../partials/footer.ejs') %>
+  
+ 

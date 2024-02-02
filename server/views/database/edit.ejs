@@ -1,0 +1,74 @@
+<%- include ('../partials/header.ejs') %>
+<%- include ('../partials/main_nav.ejs') %>
+
+<!-- Content for the Edit page-->
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-offset-3 col-md-6">
+            <h1><%= title %></h1>
+            <form class = "form" method = "post">
+            
+                <div class = "form-group">
+                <label for = "nameTextField">Book Name</label>
+                <input type = "text" class = "form-control"
+                id = "nameTextField"
+                placeholder = "Enter the Book Name"
+                value = "<%= book.Name %>"
+                name = "name" required>
+                </div>
+            
+                <div class = "form-group">
+                <label for = "authorTextField">Author</label>
+                <input type = "text" class = "form-control"
+                id = "authorTextField"
+                placeholder = "Enter the Book Author's name"
+                value = "<%= book.Author %>"
+                name = "author" required>
+                </div>
+            
+                <div class = "form-group">
+                <label for = "publishedTextField">Publication Year</label>
+                <input type = "number" class = "form-control"
+                id = "publishedTextField"
+                placeholder = "Enter the Year of publication"
+                value = "<%= book.Published %>"
+                name = "published" required>
+                </div>
+            
+                <div class = "form-group">
+                <label for = "descriptionTextField">Description</label>
+                <textarea type = "text" class = "form-control"
+                id = "descriptionTextField"
+                placeholder = "Enter the Description of the book"
+                name = "description" required><%= book.Description %></textarea>
+                </div> 
+            
+                <div class = "form-group">
+                <label for = "priceTextField">Price</label>
+                <input type = "number" class = "form-control"
+                id = "priceTextField"
+                placeholder = "Enter the Price of the book"
+                value = "<%= book.Price %>"
+                name = "price" required>
+                </div> 
+                
+                <div class = "form-group">
+                <input type="hidden" name="_method" value="PATCH">
+                </div>
+                <br>
+            
+                <button class="btn btn-primary" type = "submit">
+                    <i class="fa-solid fa-pen-to-square"></i> Submit
+                </button>
+            
+                <a href = "/books" class="btn btn-warning">
+                    <i class="fa-solid fa-rotate-left"></i> Cancel </a>
+                <br><br>
+                </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../partials/bottom_nav.ejs') %>
+<%- include ('../partials/footer.ejs') %>
+ 
